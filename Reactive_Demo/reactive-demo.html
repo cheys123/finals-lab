@@ -1,0 +1,58 @@
+<h2 class="title-header">Reactive Form Demo</h2>
+
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="field-container">
+      <input class="input" placeholder="Enter username" formControlName="username" />
+      @if (isInvalid('username')) {
+        <small class="error">Username: 4–12 chars (letters/numbers/_)</small>
+      }
+    </div>
+
+    <div class="field-container">
+      <input class="input" type="email" placeholder="Enter email" formControlName="email" />
+      @if (isInvalid('email')) {
+        <small class="error">Enter a valid email</small>
+      }
+    </div>
+
+    <div class="field-container">
+      <input class="input" type="password" placeholder="Enter password" formControlName="password" />
+      @if (isInvalid('password')) {
+        <small class="error">Password: 8+ with upper, lower, number</small>
+      }
+    </div>
+
+    <div class="field-container">
+      <select class="input" formControlName="role">
+        <option value="" disabled>Select role</option>
+        @for (r of roles; track r) {
+          <option [value]="r">{{ r }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="section-gray">
+      <label class="section-label">Gender:</label>
+      <div class="radio-options">
+        <label><input type="radio" formControlName="gender" value="Male"> Male</label>
+        <label><input type="radio" formControlName="gender" value="Female"> Female</label>
+      </div>
+    </div>
+
+    <div class="section-gray">
+      <label class="section-label">Status:</label>
+      <div class="radio-options">
+        <label><input type="radio" formControlName="status" value="Permanent"> Permanent</label>
+        <label><input type="radio" formControlName="status" value="Probationary"> Probationary</label>
+      </div>
+    </div>
+
+    <div class="field-container">
+      <textarea class="input" placeholder="Comments (Notes)" formControlName="comments" rows="3"></textarea>
+    </div>
+
+    <button class="btn-submit" type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

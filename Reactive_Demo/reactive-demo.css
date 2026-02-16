@@ -1,0 +1,97 @@
+/* Container para mapunta sa gitna ang lahat */
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* Light gray background gaya ng nasa screen */
+  padding: 40px 20px;
+}
+
+/* Violet Header sa itaas gaya ng image_6c18e8.jpg */
+.title-header {
+  color: #5c67f2;
+  font-family: 'Times New Roman', serif;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Puting Card sa gitna */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+}
+
+.field-container {
+  margin-bottom: 15px;
+}
+
+/* Standard Inputs style */
+.input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Gray background sections para sa radio buttons gaya ng image_6c14c2.jpg */
+.section-gray {
+  background-color: #f1f3f5;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.section-label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.radio-options {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+}
+
+/* Submit Button style gaya ng image_6c0a03.png */
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: #7d89f0;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-submit:disabled {
+  background-color: #c2c9f9;
+  cursor: not-allowed;
+}
+
+/* Validation styling base sa image_622740.png */
+.input.ng-invalid.ng-touched {
+  border-color: #ff7675;
+}
+
+.error {
+  color: #ff7675;
+  font-size: 11px;
+  margin-top: 4px;
+  /* display: block; */
+}
