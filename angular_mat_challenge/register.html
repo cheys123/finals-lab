@@ -1,0 +1,77 @@
+<div [class.dark-theme]="isDarkMode" class="main-container">
+
+  <div class="theme-toggle-container">
+    <mat-slide-toggle (change)="toggleTheme()">
+      <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+      {{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}
+    </mat-slide-toggle>
+  </div>
+
+  <div class="form-card">
+    <div class="header-section">
+      <h1>Event Registration Challenge</h1>
+    </div>
+
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <mat-form-field appearance="outline">
+        <mat-label>Username *</mat-label>
+        <input matInput placeholder="Enter username" formControlName="userName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email *</mat-label>
+        <input matInput type="email" placeholder="email@example.com" formControlName="email">
+        @if (formdata.controls['email'].invalid && formdata.controls['email'].touched) {
+          <mat-error>Valid email is required.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password *</mat-label>
+        <input matInput type="password" placeholder="Alphanumeric, 8+ chars" formControlName="password">
+        @if (formdata.controls['password'].invalid && formdata.controls['password'].touched) {
+          <mat-error>Must start with a letter, be alphanumeric, and 8+ chars.</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="radio-group">
+        <label class="group-label">Gender *</label>
+        <mat-radio-group formControlName="gender" class="gender-radio-group">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Birth Date *</mat-label>
+        <input matInput [matDatepicker]="picker" [max]="maxDate" placeholder="MM/DD/YYYY" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        @if (formdata.get('birthDate')?.hasError('required')) {
+          <mat-error>Birth date is required (Must be 2006 or earlier).</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="slider-group">
+        <label class="group-label">Angular Skill Level: {{ formdata.get('angularSkillLevel')?.value }}</label>
+        <mat-slider min="1" max="10" step="1" [discrete]="true">
+          <input matSliderThumb formControlName="angularSkillLevel">
+        </mat-slider>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formdata.valid" class="submit-btn">
+        <mat-icon>send</mat-icon> Submit Challenge
+      </button>
+    </form>
+
+    @if (submitted && formdata.valid) {
+      <div class="result-display">
+        <p><strong>Registration Successful!</strong></p>
+        <p>User: {{ userName }}</p>
+        <p>DOB: {{ birthDate | date:'longDate' }}</p>
+        <p>Skill: {{ angularSkillLevel }}/10</p>
+      </div>
+    }
+  </div>
+</div>
